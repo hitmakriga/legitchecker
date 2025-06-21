@@ -238,4 +238,425 @@
             color: white;
             border: none;
             padding: 8px 15px;
-            border
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .contact-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .contact-btn i {
+            font-size: 0.8rem;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        @media (max-width: 768px) {
+            .sellers-list {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .seller-info strong {
+                min-width: 100px;
+            }
+        }
+
+        /* Animation for cards */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .seller-card {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .seller-card:nth-child(1) { animation-delay: 0.1s; }
+        .seller-card:nth-child(2) { animation-delay: 0.2s; }
+        .seller-card:nth-child(3) { animation-delay: 0.3s; }
+        .seller-card:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="language-switcher">
+                <button class="language-btn active" onclick="switchLanguage('eng')">
+                    <i class="fas fa-globe"></i> English
+                </button>
+                <button class="language-btn" onclick="switchLanguage('ru')">
+                    <i class="fas fa-globe"></i> Русский
+                </button>
+                <button class="language-btn" onclick="switchLanguage('lv')">
+                    <i class="fas fa-globe"></i> Latviešu
+                </button>
+            </div>
+            <h1 id="title">Verified Sellers</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="sellers-list">
+            <!-- English Content -->
+            <div class="seller-card lang-eng">
+                <div class="seller-photo-container">
+                    <div class="seller-photo-placeholder">
+                        <i class="fas fa-user-tie" style="font-size: 2rem; color: #adb5bd;"></i>
+                    </div>
+                    <img src="" alt="Seller Photo" class="seller-photo" id="seller1-photo">
+                    <div class="seller-badge">
+                        <i class="fas fa-check-circle"></i> Verified
+                    </div>
+                </div>
+                <div class="seller-content">
+                    <div class="seller-header">
+                        <a href="tg://openmessage?user_id=896743456" class="seller-username">@kaidoone20</a>
+                    </div>
+                    
+                    <div class="seller-info">
+                        <strong>Specializes in:</strong>
+                    </div>
+                    <div class="seller-specs">
+                        <span class="spec-tag">Vapes</span>
+                        <span class="spec-tag">E-liquids</span>
+                        <span class="spec-tag">Accessories</span>
+                    </div>
+                    
+                    <div class="seller-info">
+                        <strong>Reviews:</strong> 
+                        <span>Positive feedback (4.8/5)</span>
+                    </div>
+                    
+                    <div class="seller-footer">
+                        <span class="verification-date">Verified: 21.06.2025</span>
+                        <a href="tg://openmessage?user_id=896743456" class="contact-btn">
+                            <i class="fas fa-paper-plane"></i> Contact
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="seller-card lang-eng">
+                <div class="seller-photo-container">
+                    <div class="seller-photo-placeholder">
+                        <i class="fas fa-user-tie" style="font-size: 2rem; color: #adb5bd;"></i>
+                    </div>
+                    <img src="" alt="Seller Photo" class="seller-photo" id="seller2-photo">
+                    <div class="seller-badge">
+                        <i class="fas fa-check-circle"></i> Verified
+                    </div>
+                </div>
+                <div class="seller-content">
+                    <div class="seller-header">
+                        <a href="tg://openmessage?user_id=1228822075" class="seller-username">@Ukropp7</a>
+                    </div>
+                    
+                    <div class="seller-info">
+                        <strong>Specializes in:</strong>
+                    </div>
+                    <div class="seller-specs">
+                        <span class="spec-tag">Vapes</span>
+                        <span class="spec-tag">E-liquids</span>
+                        <span class="spec-tag">Snus</span>
+                        <span class="spec-tag">Mods</span>
+                    </div>
+                    
+                    <div class="seller-info">
+                        <strong>Reviews:</strong> 
+                        <span>Positive feedback (4.9/5)</span>
+                    </div>
+                    
+                    <div class="seller-footer">
+                        <span class="verification-date">Verified: 21.06.2025</span>
+                        <a href="tg://openmessage?user_id=1228822075" class="contact-btn">
+                            <i class="fas fa-paper-plane"></i> Contact
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Russian Content -->
+            <div class="seller-card lang-ru" style="display:none;">
+                <div class="seller-photo-container">
+                    <div class="seller-photo-placeholder">
+                        <i class="fas fa-user-tie" style="font-size: 2rem; color: #adb5bd;"></i>
+                    </div>
+                    <img src="" alt="Фото продавца" class="seller-photo" id="seller1-photo-ru">
+                    <div class="seller-badge">
+                        <i class="fas fa-check-circle"></i> Проверен
+                    </div>
+                </div>
+                <div class="seller-content">
+                    <div class="seller-header">
+                        <a href="tg://openmessage?user_id=896743456" class="seller-username">@kaidoone20</a>
+                    </div>
+                    
+                    <div class="seller-info">
+                        <strong>Специализация:</strong>
+                    </div>
+                    <div class="seller-specs">
+                        <span class="spec-tag">Вейпы</span>
+                        <span class="spec-tag">Жидкости</span>
+                        <span class="spec-tag">Аксессуары</span>
+                    </div>
+                    
+                    <div class="seller-info">
+                        <strong>Отзывы:</strong> 
+                        <span>Положительные (4.8/5)</span>
+                    </div>
+                    
+                    <div class="seller-footer">
+                        <span class="verification-date">Проверен: 21.06.2025</span>
+                        <a href="tg://openmessage?user_id=896743456" class="contact-btn">
+                            <i class="fas fa-paper-plane"></i> Связаться
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="seller-card lang-ru" style="display:none;">
+                <div class="seller-photo-container">
+                    <div class="seller-photo-placeholder">
+                        <i class="fas fa-user-tie" style="font-size: 2rem; color: #adb5bd;"></i>
+                    </div>
+                    <img src="" alt="Фото продавца" class="seller-photo" id="seller2-photo-ru">
+                    <div class="seller-badge">
+                        <i class="fas fa-check-circle"></i> Проверен
+                    </div>
+                </div>
+                <div class="seller-content">
+                    <div class="seller-header">
+                        <a href="tg://openmessage?user_id=1228822075" class="seller-username">@Ukropp7</a>
+                    </div>
+                    
+                    <div class="seller-info">
+                        <strong>Специализация:</strong>
+                    </div>
+                    <div class="seller-specs">
+                        <span class="spec-tag">Вейпы</span>
+                        <span class="spec-tag">Жидкости</span>
+                        <span class="spec-tag">Снюс</span>
+                        <span class="spec-tag">Моды</span>
+                    </div>
+                    
+                    <div class="seller-info">
+                        <strong>Отзывы:</strong> 
+                        <span>Положительные (4.9/5)</span>
+                    </div>
+                    
+                    <div class="seller-footer">
+                        <span class="verification-date">Проверен: 21.06.2025</span>
+                        <a href="tg://openmessage?user_id=1228822075" class="contact-btn">
+                            <i class="fas fa-paper-plane"></i> Связаться
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Latvian Content -->
+            <div class="seller-card lang-lv" style="display:none;">
+                <div class="seller-photo-container">
+                    <div class="seller-photo-placeholder">
+                        <i class="fas fa-user-tie" style="font-size: 2rem; color: #adb5bd;"></i>
+                    </div>
+                    <img src="" alt="Pārdevēja foto" class="seller-photo" id="seller1-photo-lv">
+                    <div class="seller-badge">
+                        <i class="fas fa-check-circle"></i> Verificēts
+                    </div>
+                </div>
+                <div class="seller-content">
+                    <div class="seller-header">
+                        <a href="tg://openmessage?user_id=896743456" class="seller-username">@kaidoone20</a>
+                    </div>
+                    
+                    <div class="seller-info">
+                        <strong>Specializācija:</strong>
+                    </div>
+                    <div class="seller-specs">
+                        <span class="spec-tag">Elektroniskās cigaretes</span>
+                        <span class="spec-tag">E-šķidrumi</span>
+                        <span class="spec-tag">Piederumi</span>
+                    </div>
+                    
+                    <div class="seller-info">
+                        <strong>Atsauksmes:</strong> 
+                        <span>Pozitīvas (4.8/5)</span>
+                    </div>
+                    
+                    <div class="seller-footer">
+                        <span class="verification-date">Verificēts: 21.06.2025</span>
+                        <a href="tg://openmessage?user_id=896743456" class="contact-btn">
+                            <i class="fas fa-paper-plane"></i> Sazināties
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="seller-card lang-lv" style="display:none;">
+                <div class="seller-photo-container">
+                    <div class="seller-photo-placeholder">
+                        <i class="fas fa-user-tie" style="font-size: 2rem; color: #adb5bd;"></i>
+                    </div>
+                    <img src="" alt="Pārdevēja foto" class="seller-photo" id="seller2-photo-lv">
+                    <div class="seller-badge">
+                        <i class="fas fa-check-circle"></i> Verificēts
+                    </div>
+                </div>
+                <div class="seller-content">
+                    <div class="seller-header">
+                        <a href="tg://openmessage?user_id=896743457" class="seller-username">@Ukropp7</a>
+                    </div>
+                    
+                    <div class="seller-info">
+                        <strong>Specializācija:</strong>
+                    </div>
+                    <div class="seller-specs">
+                        <span class="spec-tag">Elektroniskās cigaretes</span>
+                        <span class="spec-tag">E-šķidrumi</span>
+                        <span class="spec-tag">Snuss</span>
+                    </div>
+                    
+                    <div class="seller-info">
+                        <strong>Atsauksmes:</strong> 
+                        <span>Pozitīvas (4.9/5)</span>
+                    </div>
+                    
+                    <div class="seller-footer">
+                        <span class="verification-date">Verificēts: 21.06.2025</span>
+                        <a href="tg://openmessage?user_id=896743457" class="contact-btn">
+                            <i class="fas fa-paper-plane"></i> Sazināties
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#" class="footer-link">About Us</a>
+                    <a href="#" class="footer-link">Verification Process</a>
+                    <a href="#" class="footer-link">Contact</a>
+                </div>
+                <p class="copyright" id="footer-text">© 2025 Verified Sellers. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language switching function
+        function switchLanguage(lang) {
+            // Update active language button
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Hide all seller cards
+            document.querySelectorAll('.seller-card').forEach(card => {
+                card.style.display = 'none';
+            });
+            
+            // Show cards for selected language
+            document.querySelectorAll('.lang-' + lang).forEach(card => {
+                card.style.display = 'flex';
+            });
+            
+            // Update titles based on language
+            const titles = {
+                'eng': {
+                    'title': 'Verified Sellers',
+                    'footer': '© 2025 Verified Sellers. All rights reserved.'
+                },
+                'ru': {
+                    'title': 'Проверенные продавцы',
+                    'footer': '© 2025 Проверенные продавцы. Все права защищены.'
+                },
+                'lv': {
+                    'title': 'Verificēti pārdevēji',
+                    'footer': '© 2025 Verificēti pārdevēji. Visas tiesības aizsargātas.'
+                }
+            };
+            
+            document.getElementById('title').textContent = titles[lang].title;
+            document.getElementById('footer-text').textContent = titles[lang].footer;
+        }
+        
+        // Function to load seller photos
+        function loadSellerPhotos() {
+            // Example photo URLs - replace these with actual image paths
+            const photoUrls = {
+                'seller1': 'https://i.ibb.co/C32L0vp2/photo-2025-06-16-21-14-51.jpg',
+                'seller2': 'https://i.ibb.co/gLMGbgQK/photo-2025-06-21-21-36-08.jpg'
+            };
+            
+            // Load photos for all language versions
+            ['', '-ru', '-lv'].forEach(suffix => {
+                Object.keys(photoUrls).forEach(seller => {
+                    const img = document.getElementById(`${seller}-photo${suffix}`);
+                    if (img) {
+                        img.src = photoUrls[seller];
+                        img.style.display = 'block';
+                        img.previousElementSibling.style.display = 'none'; // Hide placeholder
+                    }
+                });
+            });
+        }
+        
+        // Initialize with English by default and load photos
+        document.addEventListener('DOMContentLoaded', function() {
+            switchLanguage('eng');
+            loadSellerPhotos();
+        });
+    </script>
+</body>
+</html>
