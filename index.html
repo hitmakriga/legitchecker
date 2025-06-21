@@ -143,7 +143,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: none;
+            display: block;
         }
 
         .seller-badge {
@@ -159,6 +159,7 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            z-index: 2;
         }
 
         .seller-badge i {
@@ -347,10 +348,7 @@
             <!-- English Content -->
             <div class="seller-card lang-eng">
                 <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-tie" style="font-size: 2rem; color: #adb5bd;"></i>
-                    </div>
-                    <img src="" alt="Seller Photo" class="seller-photo" id="seller1-photo">
+                    <img src="https://i.imgur.com/JvkxQY2.jpg" alt="Seller Photo" class="seller-photo" id="seller1-photo">
                     <div class="seller-badge">
                         <i class="fas fa-check-circle"></i> Verified
                     </div>
@@ -385,10 +383,7 @@
             
             <div class="seller-card lang-eng">
                 <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-tie" style="font-size: 2rem; color: #adb5bd;"></i>
-                    </div>
-                    <img src="" alt="Seller Photo" class="seller-photo" id="seller2-photo">
+                    <img src="https://i.imgur.com/pXWxQD2.jpg" alt="Seller Photo" class="seller-photo" id="seller2-photo">
                     <div class="seller-badge">
                         <i class="fas fa-check-circle"></i> Verified
                     </div>
@@ -425,10 +420,7 @@
             <!-- Russian Content -->
             <div class="seller-card lang-ru" style="display:none;">
                 <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-tie" style="font-size: 2rem; color: #adb5bd;"></i>
-                    </div>
-                    <img src="" alt="Фото продавца" class="seller-photo" id="seller1-photo-ru">
+                    <img src="https://i.imgur.com/JvkxQY2.jpg" alt="Фото продавца" class="seller-photo" id="seller1-photo-ru">
                     <div class="seller-badge">
                         <i class="fas fa-check-circle"></i> Проверен
                     </div>
@@ -463,10 +455,7 @@
             
             <div class="seller-card lang-ru" style="display:none;">
                 <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-tie" style="font-size: 2rem; color: #adb5bd;"></i>
-                    </div>
-                    <img src="" alt="Фото продавца" class="seller-photo" id="seller2-photo-ru">
+                    <img src="https://i.imgur.com/pXWxQD2.jpg" alt="Фото продавца" class="seller-photo" id="seller2-photo-ru">
                     <div class="seller-badge">
                         <i class="fas fa-check-circle"></i> Проверен
                     </div>
@@ -503,10 +492,7 @@
             <!-- Latvian Content -->
             <div class="seller-card lang-lv" style="display:none;">
                 <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-tie" style="font-size: 2rem; color: #adb5bd;"></i>
-                    </div>
-                    <img src="" alt="Pārdevēja foto" class="seller-photo" id="seller1-photo-lv">
+                    <img src="https://i.imgur.com/JvkxQY2.jpg" alt="Pārdevēja foto" class="seller-photo" id="seller1-photo-lv">
                     <div class="seller-badge">
                         <i class="fas fa-check-circle"></i> Verificēts
                     </div>
@@ -541,10 +527,7 @@
             
             <div class="seller-card lang-lv" style="display:none;">
                 <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-tie" style="font-size: 2rem; color: #adb5bd;"></i>
-                    </div>
-                    <img src="" alt="Pārdevēja foto" class="seller-photo" id="seller2-photo-lv">
+                    <img src="https://i.imgur.com/pXWxQD2.jpg" alt="Pārdevēja foto" class="seller-photo" id="seller2-photo-lv">
                     <div class="seller-badge">
                         <i class="fas fa-check-circle"></i> Verificēts
                     </div>
@@ -631,31 +614,9 @@
             document.getElementById('footer-text').textContent = titles[lang].footer;
         }
         
-        // Function to load seller photos
-        function loadSellerPhotos() {
-            // Example photo URLs - replace these with actual image paths
-            const photoUrls = {
-                'seller1': 'https://i.ibb.co/gLMGbgQK/photo-2025-06-21-21-36-08.jpg',
-                'seller2': 'https://i.ibb.co/gLMGbgQK/photo-2025-06-21-21-36-08.jpg'
-            };
-            
-            // Load photos for all language versions
-            ['', '-ru', '-lv'].forEach(suffix => {
-                Object.keys(photoUrls).forEach(seller => {
-                    const img = document.getElementById(`${seller}-photo${suffix}`);
-                    if (img) {
-                        img.src = photoUrls[seller];
-                        img.style.display = 'block';
-                        img.previousElementSibling.style.display = 'none'; // Hide placeholder
-                    }
-                });
-            });
-        }
-        
-        // Initialize with English by default and load photos
+        // Initialize with English by default
         document.addEventListener('DOMContentLoaded', function() {
             switchLanguage('eng');
-            loadSellerPhotos();
         });
     </script>
 </body>
