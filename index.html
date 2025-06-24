@@ -7,499 +7,102 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #4361ee;
-            --primary-dark: #3a56d4;
-            --secondary: #3f37c9;
-            --accent: #4895ef;
-            --dark: #212529;
-            --light: #f8f9fa;
-            --gray: #6c757d;
-            --success: #4cc9f0;
-            --warning: #f72585;
+            --primary: #4361ee; --primary-dark: #3a56d4; --secondary: #3f37c9; 
+            --accent: #4895ef; --dark: #212529; --light: #f8f9fa; --gray: #6c757d;
+            --success: #4cc9f0; --warning: #f72585;
             --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
             --transition: all 0.3s ease;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: #f5f7fa;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* New Header Design */
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 0;
-            box-shadow: var(--card-shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header-container {
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background-color: rgba(0,0,0,0.2);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo i {
-            color: var(--accent);
-        }
-
-        .language-switcher {
-            display: flex;
-            gap: 10px;
-        }
-
-        .language-btn {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-weight: 500;
-        }
-
-        .language-btn:hover, .language-btn.active {
-            background-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .language-btn i {
-            font-size: 0.9rem;
-        }
-
-        .header-image-container {
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .header-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: none;
-        }
-
-        .header-image.active {
-            display: block;
-        }
-
-        .header-title {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0,0,0,0.7);
-            padding: 10px 30px;
-            border-radius: 30px;
-            font-size: 2rem;
-            font-weight: 700;
-            text-align: center;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px 0;
-            position: relative;
-            flex: 1;
-        }
-
-        .search-filter {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .search-box {
-            flex: 1;
-            min-width: 250px;
-            position: relative;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 12px 15px 12px 40px;
-            border-radius: 30px;
-            border: 1px solid #ddd;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .search-box input:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.2);
-        }
-
-        .search-box i {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--gray);
-        }
-
-        .filter-select {
-            min-width: 200px;
-        }
-
-        .filter-select select {
-            width: 100%;
-            padding: 12px 15px;
-            border-radius: 30px;
-            border: 1px solid #ddd;
-            font-size: 1rem;
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 15px center;
-            background-size: 1em;
-        }
-
-        .sellers-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 25px;
-            margin-top: 2rem;
-        }
-
-        .seller-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .seller-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .seller-photo-container {
-            width: 100%;
-            aspect-ratio: 1/1;
-            background: linear-gradient(45deg, #e0e0e0, #f5f5f5);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .seller-photo-placeholder {
-            font-size: 1rem;
-            color: var(--gray);
-            text-align: center;
-            padding: 20px;
-        }
-
-        .seller-photo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .seller-card:hover .seller-photo {
-            transform: scale(1.05);
-        }
-
-        .seller-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background-color: var(--success);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            z-index: 2;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .seller-badge i {
-            font-size: 0.7rem;
-        }
-
-        .seller-content {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .seller-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .seller-username {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--primary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .seller-username:hover {
-            color: var(--primary-dark);
-            text-decoration: underline;
-        }
-
-        .seller-info {
-            margin-bottom: 0.8rem;
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .seller-info strong {
-            color: var(--dark);
-            min-width: 120px;
-            display: inline-block;
-            font-weight: 600;
-        }
-
-        .seller-specs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 10px 0;
-        }
-
-        .spec-tag {
-            background-color: #e9ecef;
-            color: var(--dark);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .spec-tag:hover {
-            background-color: var(--accent);
-            color: white;
-        }
-
-        .seller-footer {
-            margin-top: auto;
-            padding-top: 15px;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .verification-date {
-            font-size: 0.85rem;
-            color: var(--gray);
-        }
-
-        .contact-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .contact-btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-        }
-
-        .contact-btn i {
-            font-size: 0.8rem;
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .footer-link {
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-            padding: 5px 0;
-            position: relative;
-        }
-
-        .footer-link:hover {
-            color: var(--accent);
-        }
-
-        .footer-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: var(--transition);
-        }
-
-        .footer-link:hover::after {
-            width: 100%;
-        }
-
-        .copyright {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 3rem;
-            gap: 10px;
-        }
-
-        .page-btn {
-            padding: 8px 15px;
-            border-radius: 6px;
-            background-color: white;
-            border: 1px solid #ddd;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .page-btn:hover {
-            background-color: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .page-btn.active {
-            background-color: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.6; color: var(--dark); 
+               background-color: #f5f7fa; min-height: 100vh; display: flex; flex-direction: column; }
+        
+        header { background: linear-gradient(135deg, var(--primary), var(--secondary)); 
+                 color: white; padding: 0; box-shadow: var(--card-shadow); position: relative; }
+        .header-container { display: flex; flex-direction: column; position: relative; }
+        .header-top { display: flex; justify-content: space-between; align-items: center; 
+                      padding: 1rem 2rem; background-color: rgba(0,0,0,0.2); }
+        .logo { font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .logo i { color: var(--accent); }
+        .language-switcher { display: flex; gap: 10px; }
+        .language-btn { background-color: rgba(255, 255, 255, 0.2); color: white; border: none; 
+                        padding: 8px 15px; border-radius: 20px; cursor: pointer; transition: var(--transition); 
+                        display: flex; align-items: center; gap: 5px; font-weight: 500; }
+        .language-btn:hover, .language-btn.active { background-color: rgba(255, 255, 255, 0.3); }
+        .header-image-container { width: 100%; height: 200px; overflow: hidden; position: relative; 
+                                 display: flex; align-items: center; justify-content: center; }
+        .header-image { width: 100%; height: 100%; object-fit: cover; display: none; }
+        .header-image.active { display: block; }
+        .header-title { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); 
+                        background-color: rgba(0,0,0,0.7); padding: 10px 30px; border-radius: 30px; 
+                        font-size: 2rem; font-weight: 700; text-align: center; }
+        
+        .container { width: 90%; max-width: 1400px; margin: 0 auto; padding: 20px 0; position: relative; flex: 1; }
+        .search-filter { display: flex; gap: 15px; margin-bottom: 2rem; flex-wrap: wrap; }
+        .search-box { flex: 1; min-width: 250px; position: relative; }
+        .search-box input { width: 100%; padding: 12px 15px 12px 40px; border-radius: 30px; 
+                            border: 1px solid #ddd; font-size: 1rem; transition: var(--transition); }
+        .search-box input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.2); }
+        .search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--gray); }
+        .filter-select { min-width: 200px; }
+        .filter-select select { width: 100%; padding: 12px 15px; border-radius: 30px; border: 1px solid #ddd; 
+                               font-size: 1rem; appearance: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); 
+                               background-repeat: no-repeat; background-position: right 15px center; background-size: 1em; }
+        
+        .sellers-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; margin-top: 2rem; }
+        .seller-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: var(--card-shadow); 
+                       transition: var(--transition); display: flex; flex-direction: column; position: relative; 
+                       animation: fadeIn 0.5s ease forwards; opacity: 0; }
+        .seller-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); }
+        .seller-photo-container { width: 100%; aspect-ratio: 1/1; background: linear-gradient(45deg, #e0e0e0, #f5f5f5); 
+                                  position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .seller-photo { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+        .seller-card:hover .seller-photo { transform: scale(1.05); }
+        .seller-badge { position: absolute; top: 15px; left: 15px; background-color: var(--success); color: white; 
+                        padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; 
+                        display: flex; align-items: center; gap: 5px; z-index: 2; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .seller-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .seller-header { display: flex; align-items: center; margin-bottom: 1rem; }
+        .seller-username { font-size: 1.2rem; font-weight: 600; color: var(--primary); text-decoration: none; transition: var(--transition); }
+        .seller-username:hover { color: var(--primary-dark); text-decoration: underline; }
+        .seller-info { margin-bottom: 0.8rem; display: flex; flex-wrap: wrap; }
+        .seller-info strong { color: var(--dark); min-width: 120px; display: inline-block; font-weight: 600; }
+        .seller-specs { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+        .spec-tag { background-color: #e9ecef; color: var(--dark); padding: 5px 12px; border-radius: 20px; 
+                    font-size: 0.8rem; font-weight: 500; transition: var(--transition); }
+        .spec-tag:hover { background-color: var(--accent); color: white; }
+        .seller-footer { margin-top: auto; padding-top: 15px; border-top: 1px solid #e9ecef; 
+                         display: flex; justify-content: space-between; align-items: center; }
+        .verification-date { font-size: 0.85rem; color: var(--gray); }
+        .contact-btn { background-color: var(--primary); color: white; border: none; padding: 8px 15px; 
+                       border-radius: 6px; cursor: pointer; transition: var(--transition); font-weight: 500; 
+                       display: flex; align-items: center; gap: 5px; text-decoration: none; font-size: 0.9rem; }
+        .contact-btn:hover { background-color: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 3px 8px rgba(0,0,0,0.1); }
+        
+        footer { background-color: var(--dark); color: white; text-align: center; padding: 2rem 0; margin-top: 4rem; }
+        .footer-content { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+        .footer-links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .footer-link { color: white; text-decoration: none; transition: var(--transition); padding: 5px 0; position: relative; }
+        .footer-link:hover { color: var(--accent); }
+        .footer-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; 
+                             height: 2px; background-color: var(--accent); transition: var(--transition); }
+        .footer-link:hover::after { width: 100%; }
+        .copyright { font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); }
+        
+        .pagination { display: flex; justify-content: center; margin-top: 3rem; gap: 10px; }
+        .page-btn { padding: 8px 15px; border-radius: 6px; background-color: white; border: 1px solid #ddd; 
+                    cursor: pointer; transition: var(--transition); }
+        .page-btn:hover, .page-btn.active { background-color: var(--primary); color: white; border-color: var(--primary); }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
         @media (max-width: 768px) {
-            .sellers-list {
-                grid-template-columns: 1fr;
-            }
-            
-            .header-title {
-                font-size: 1.5rem;
-                padding: 8px 20px;
-            }
-            
-            .seller-info strong {
-                min-width: 100px;
-            }
-
-            .search-filter {
-                flex-direction: column;
-            }
-            
-            .header-top {
-                flex-direction: column;
-                gap: 15px;
-                padding: 1rem;
-            }
+            .sellers-list { grid-template-columns: 1fr; }
+            .header-title { font-size: 1.5rem; padding: 8px 20px; }
+            .seller-info strong { min-width: 100px; }
+            .search-filter { flex-direction: column; }
+            .header-top { flex-direction: column; gap: 15px; padding: 1rem; }
         }
-
-        /* Animation for cards */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .seller-card {
-            animation: fadeIn 0.5s ease forwards;
-            opacity: 0;
-        }
-
-        .seller-card:nth-child(1) { animation-delay: 0.1s; }
-        .seller-card:nth-child(2) { animation-delay: 0.2s; }
-        .seller-card:nth-child(3) { animation-delay: 0.3s; }
-        .seller-card:nth-child(4) { animation-delay: 0.4s; }
-        .seller-card:nth-child(5) { animation-delay: 0.5s; }
-        .seller-card:nth-child(6) { animation-delay: 0.6s; }
-        .seller-card:nth-child(7) { animation-delay: 0.7s; }
-        .seller-card:nth-child(8) { animation-delay: 0.8s; }
-        .seller-card:nth-child(9) { animation-delay: 0.9s; }
-        .seller-card:nth-child(10) { animation-delay: 1.0s; }
-        .seller-card:nth-child(11) { animation-delay: 1.1s; }
-        .seller-card:nth-child(12) { animation-delay: 1.2s; }
     </style>
 </head>
 <body>
@@ -524,21 +127,12 @@
             </div>
             
             <div class="header-image-container">
-                <!-- English Image -->
                 <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-                     alt="Verified sellers" 
-                     class="header-image active lang-eng-img">
-                
-                <!-- Russian Image -->
+                     alt="Verified sellers" class="header-image active" id="eng-img">
                 <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-                     alt="Проверенные продавцы" 
-                     class="header-image lang-ru-img">
-                
-                <!-- Latvian Image -->
+                     alt="Проверенные продавцы" class="header-image" id="ru-img">
                 <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-                     alt="Verificēti pārdevēji" 
-                     class="header-image lang-lv-img">
-                
+                     alt="Verificēti pārdevēji" class="header-image" id="lv-img">
                 <h1 class="header-title" id="title">Verified Sellers</h1>
             </div>
         </div>
@@ -561,1293 +155,8 @@
             </div>
         </div>
 
-        <div class="sellers-list">
-            <!-- English Content -->
-            <div class="seller-card lang-eng" data-categories="vapes e-liquids">
-                <div class="seller-photo-container">
-                    <img src="https://i.ibb.co/21NJKP0N/photo-2025-06-16-21-14-51.jpg" alt="Seller Photo" class="seller-photo" loading="lazy">
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verified
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=896743456" class="seller-username">@kaidoone20</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializes in:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Vapes</span>
-                        <span class="spec-tag">E-liquids</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Reviews:</strong> 
-                        <span>Ask directly</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verified: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=896743456" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Contact
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-eng" data-categories="vapes e-liquids snus">
-                <div class="seller-photo-container">
-                    <img src="https://i.ibb.co/gLMGbgQK/photo-2025-06-21-21-36-08.jpg" alt="Seller Photo" class="seller-photo" loading="lazy">
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verified
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=1228822075" class="seller-username">@Ukropp7</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializes in:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Vapes</span>
-                        <span class="spec-tag">E-liquids</span>
-                        <span class="spec-tag">Snus</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Reviews:</strong> 
-                        <span>Ask directly</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verified: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=1228822075" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Contact
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="seller-card lang-eng" data-categories="crypto">
-                <div class="seller-photo-container">
-                    <img src="https://i.ibb.co/pBkMq5qm/c491adce-fcc5-49eb-8154-0d178f0a3863.jpg" alt="Seller Photo" class="seller-photo" loading="lazy">
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verified
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=6637869889" class="seller-username">@Gmk8888</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializes in:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Crypto seller/buyer</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Reviews:</strong> 
-                        <span>Ask directly</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verified: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=6637869889" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Contact
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Additional English sellers (4-12) -->
-            <div class="seller-card lang-eng" data-categories="vapes e-liquids">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verified
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=123456789" class="seller-username">@seller4</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializes in:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Vapes</span>
-                        <span class="spec-tag">E-liquids</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Reviews:</strong> 
-                        <span>Ask directly</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verified: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=123456789" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Contact
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-eng" data-categories="snus">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verified
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=234567890" class="seller-username">@seller5</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializes in:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Snus</span>
-                        <span class="spec-tag">Premium brands</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Reviews:</strong> 
-                        <span>Ask directly</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verified: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=234567890" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Contact
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-eng" data-categories="vapes">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verified
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=345678901" class="seller-username">@seller6</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializes in:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Vapes</span>
-                        <span class="spec-tag">Mods</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Reviews:</strong> 
-                        <span>Ask directly</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verified: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=345678901" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Contact
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-eng" data-categories="e-liquids">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verified
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=456789012" class="seller-username">@seller7</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializes in:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">E-liquids</span>
-                        <span class="spec-tag">DIY supplies</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Reviews:</strong> 
-                        <span>Ask directly</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verified: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=456789012" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Contact
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-eng" data-categories="vapes e-liquids">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verified
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=567890123" class="seller-username">@seller8</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializes in:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Vapes</span>
-                        <span class="spec-tag">E-liquids</span>
-                        <span class="spec-tag">Accessories</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Reviews:</strong> 
-                        <span>Ask directly</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verified: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=567890123" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Contact
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-eng" data-categories="crypto">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verified
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=678901234" class="seller-username">@seller9</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializes in:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Crypto exchange</span>
-                        <span class="spec-tag">BTC/ETH</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Reviews:</strong> 
-                        <span>Ask directly</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verified: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=678901234" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Contact
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-eng" data-categories="snus">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verified
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=789012345" class="seller-username">@seller10</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializes in:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Snus</span>
-                        <span class="spec-tag">Swedish brands</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Reviews:</strong> 
-                        <span>Ask directly</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verified: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=789012345" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Contact
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-eng" data-categories="vapes">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verified
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=890123456" class="seller-username">@seller11</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializes in:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Vapes</span>
-                        <span class="spec-tag">Disposable</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Reviews:</strong> 
-                        <span>Ask directly</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verified: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=890123456" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Contact
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-eng" data-categories="e-liquids">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verified
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=901234567" class="seller-username">@seller12</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializes in:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">E-liquids</span>
-                        <span class="spec-tag">Flavors</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Reviews:</strong> 
-                        <span>Ask directly</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verified: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=901234567" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Contact
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Russian Content (hidden by default) -->
-            <div class="seller-card lang-ru" style="display:none;" data-categories="vapes e-liquids">
-                <div class="seller-photo-container">
-                    <img src="https://i.ibb.co/21NJKP0N/photo-2025-06-16-21-14-51.jpg" alt="Фото продавца" class="seller-photo" loading="lazy">
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Проверен
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=896743456" class="seller-username">@kaidoone20</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Специализация:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Вейпы</span>
-                        <span class="spec-tag">Жидкости</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Отзывы:</strong> 
-                        <span>Спросите на прямую</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Проверен: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=896743456" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Связаться
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-ru" style="display:none;" data-categories="vapes e-liquids snus">
-                <div class="seller-photo-container">
-                    <img src="https://i.ibb.co/gLMGbgQK/photo-2025-06-21-21-36-08.jpg" alt="Фото продавца" class="seller-photo" loading="lazy">
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Проверен
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=1228822075" class="seller-username">@Ukropp7</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Специализация:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Вейпы</span>
-                        <span class="spec-tag">Жидкости</span>
-                        <span class="spec-tag">Снюс</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Отзывы:</strong> 
-                        <span>Спросите на прямую</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Проверен: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=1228822075" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Связаться
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="seller-card lang-ru" style="display:none;" data-categories="crypto">
-                <div class="seller-photo-container">
-                    <img src="https://i.ibb.co/pBkMq5qm/c491adce-fcc5-49eb-8154-0d178f0a3863.jpg" alt="Фото продавца" class="seller-photo" loading="lazy">
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Проверен
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=6637869889" class="seller-username">@Gmk8888</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Специализация:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Покупка/продажа криптовалюты</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Отзывы:</strong> 
-                        <span>Спросите на прямую</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Проверен: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=6637869889" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Связаться
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Additional Russian sellers (4-12) -->
-            <div class="seller-card lang-ru" style="display:none;" data-categories="vapes e-liquids">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Проверен
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=123456789" class="seller-username">@seller4</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Специализация:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Вейпы</span>
-                        <span class="spec-tag">Жидкости</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Отзывы:</strong> 
-                        <span>Спросите на прямую</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Проверен: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=123456789" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Связаться
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-ru" style="display:none;" data-categories="snus">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Проверен
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=234567890" class="seller-username">@seller5</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Специализация:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Снюс</span>
-                        <span class="spec-tag">Премиум бренды</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Отзывы:</strong> 
-                        <span>Спросите на прямую</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Проверен: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=234567890" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Связаться
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-ru" style="display:none;" data-categories="vapes">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Проверен
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=345678901" class="seller-username">@seller6</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Специализация:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Вейпы</span>
-                        <span class="spec-tag">Моды</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Отзывы:</strong> 
-                        <span>Спросите на прямую</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Проверен: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=345678901" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Связаться
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-ru" style="display:none;" data-categories="e-liquids">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Проверен
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=456789012" class="seller-username">@seller7</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Специализация:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Жидкости</span>
-                        <span class="spec-tag">DIY материалы</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Отзывы:</strong> 
-                        <span>Спросите на прямую</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Проверен: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=456789012" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Связаться
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-ru" style="display:none;" data-categories="vapes e-liquids">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Проверен
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=567890123" class="seller-username">@seller8</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Специализация:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Вейпы</span>
-                        <span class="spec-tag">Жидкости</span>
-                        <span class="spec-tag">Аксессуары</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Отзывы:</strong> 
-                        <span>Спросите на прямую</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Проверен: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=567890123" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Связаться
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-ru" style="display:none;" data-categories="crypto">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Проверен
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=678901234" class="seller-username">@seller9</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Специализация:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Обмен криптовалюты</span>
-                        <span class="spec-tag">BTC/ETH</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Отзывы:</strong> 
-                        <span>Спросите на прямую</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Проверен: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=678901234" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Связаться
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-ru" style="display:none;" data-categories="snus">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Проверен
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=789012345" class="seller-username">@seller10</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Специализация:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Снюс</span>
-                        <span class="spec-tag">Шведские бренды</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Отзывы:</strong> 
-                        <span>Спросите на прямую</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Проверен: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=789012345" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Связаться
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-ru" style="display:none;" data-categories="vapes">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Проверен
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=890123456" class="seller-username">@seller11</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Специализация:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Вейпы</span>
-                        <span class="spec-tag">Одноразовые</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Отзывы:</strong> 
-                        <span>Спросите на прямую</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Проверен: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=890123456" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Связаться
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-ru" style="display:none;" data-categories="e-liquids">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Проверен
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=901234567" class="seller-username">@seller12</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Специализация:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Жидкости</span>
-                        <span class="spec-tag">Ароматы</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Отзывы:</strong> 
-                        <span>Спросите на прямую</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Проверен: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=901234567" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Связаться
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Latvian Content (hidden by default) -->
-            <div class="seller-card lang-lv" style="display:none;" data-categories="vapes e-liquids">
-                <div class="seller-photo-container">
-                    <img src="https://i.ibb.co/21NJKP0N/photo-2025-06-16-21-14-51.jpg" alt="Pārdevēja foto" class="seller-photo" loading="lazy">
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verificēts
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=896743456" class="seller-username">@kaidoone20</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializācija:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Elektroniskās cigaretes</span>
-                        <span class="spec-tag">E-šķidrumi</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Atsauksmes:</strong> 
-                        <span>Jautāt pa taisno</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verificēts: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=896743456" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Sazināties
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-lv" style="display:none;" data-categories="vapes e-liquids snus">
-                <div class="seller-photo-container">
-                    <img src="https://i.ibb.co/gLMGbgQK/photo-2025-06-21-21-36-08.jpg" alt="Pārdevēja foto" class="seller-photo" loading="lazy">
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verificēts
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=1228822075" class="seller-username">@Ukropp7</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializācija:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Elektroniskās cigaretes</span>
-                        <span class="spec-tag">E-šķidrumi</span>
-                        <span class="spec-tag">Snuss</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Atsauksmes:</strong> 
-                        <span>Jautāt pa taisno</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verificēts: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=1228822075" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Sazināties
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="seller-card lang-lv" style="display:none;" data-categories="crypto">
-                <div class="seller-photo-container">
-                    <img src="https://i.ibb.co/pBkMq5qm/c491adce-fcc5-49eb-8154-0d178f0a3863.jpg" alt="Pārdevēja foto" class="seller-photo" loading="lazy">
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verificēts
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=6637869889" class="seller-username">@Gmk8888</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializācija:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Kriptovalūtas pārdošana un iepirkšana</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Atsauksmes:</strong> 
-                        <span>Jautāt pa taisno</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verificēts: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=6637869889" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Sazināties
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Additional Latvian sellers (4-12) -->
-            <div class="seller-card lang-lv" style="display:none;" data-categories="vapes e-liquids">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verificēts
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=123456789" class="seller-username">@seller4</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializācija:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Elektroniskās cigaretes</span>
-                        <span class="spec-tag">E-šķidrumi</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Atsauksmes:</strong> 
-                        <span>Jautāt pa taisno</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verificēts: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=123456789" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Sazināties
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-lv" style="display:none;" data-categories="snus">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verificēts
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=234567890" class="seller-username">@seller5</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializācija:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Snuss</span>
-                        <span class="spec-tag">Premium zīmoli</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Atsauksmes:</strong> 
-                        <span>Jautāt pa taisno</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verificēts: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=234567890" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Sazināties
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-lv" style="display:none;" data-categories="vapes">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verificēts
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=345678901" class="seller-username">@seller6</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializācija:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Elektroniskās cigaretes</span>
-                        <span class="spec-tag">Modi</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Atsauksmes:</strong> 
-                        <span>Jautāt pa taisno</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verificēts: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=345678901" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Sazināties
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-lv" style="display:none;" data-categories="e-liquids">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verificēts
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=456789012" class="seller-username">@seller7</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializācija:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">E-šķidrumi</span>
-                        <span class="spec-tag">DIY materiāli</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Atsauksmes:</strong> 
-                        <span>Jautāt pa taisno</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verificēts: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=456789012" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Sazināties
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-lv" style="display:none;" data-categories="vapes e-liquids">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verificēts
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=567890123" class="seller-username">@seller8</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializācija:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Elektroniskās cigaretes</span>
-                        <span class="spec-tag">E-šķidrumi</span>
-                        <span class="spec-tag">Aksesuāri</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Atsauksmes:</strong> 
-                        <span>Jautāt pa taisno</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verificēts: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=567890123" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Sazināties
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-lv" style="display:none;" data-categories="crypto">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verificēts
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=678901234" class="seller-username">@seller9</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializācija:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Kriptovalūtas apmaiņa</span>
-                        <span class="spec-tag">BTC/ETH</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Atsauksmes:</strong> 
-                        <span>Jautāt pa taisno</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verificēts: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=678901234" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Sazināties
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-lv" style="display:none;" data-categories="snus">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verificēts
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=789012345" class="seller-username">@seller10</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializācija:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Snuss</span>
-                        <span class="spec-tag">Zviedru zīmoli</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Atsauksmes:</strong> 
-                        <span>Jautāt pa taisno</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verificēts: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=789012345" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Sazināties
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-lv" style="display:none;" data-categories="vapes">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verificēts
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=890123456" class="seller-username">@seller11</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializācija:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">Elektroniskās cigaretes</span>
-                        <span class="spec-tag">Vienreizējās</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Atsauksmes:</strong> 
-                        <span>Jautāt pa taisno</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verificēts: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=890123456" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Sazināties
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="seller-card lang-lv" style="display:none;" data-categories="e-liquids">
-                <div class="seller-photo-container">
-                    <div class="seller-photo-placeholder">
-                        <i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i>
-                    </div>
-                    <div class="seller-badge">
-                        <i class="fas fa-check-circle"></i> Verificēts
-                    </div>
-                </div>
-                <div class="seller-content">
-                    <div class="seller-header">
-                        <a href="tg://openmessage?user_id=901234567" class="seller-username">@seller12</a>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Specializācija:</strong>
-                    </div>
-                    <div class="seller-specs">
-                        <span class="spec-tag">E-šķidrumi</span>
-                        <span class="spec-tag">Garšas</span>
-                    </div>
-                    
-                    <div class="seller-info">
-                        <strong>Atsauksmes:</strong> 
-                        <span>Jautāt pa taisno</span>
-                    </div>
-                    
-                    <div class="seller-footer">
-                        <span class="verification-date">Verificēts: 21.06.2025</span>
-                        <a href="tg://openmessage?user_id=901234567" class="contact-btn">
-                            <i class="fas fa-paper-plane"></i> Sazināties
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div class="sellers-list" id="sellersContainer">
+            <!-- Seller cards will be generated by JavaScript -->
         </div>
 
         <div class="pagination">
@@ -1871,109 +180,305 @@
     </footer>
 
     <script>
-        // Enhanced Language switching function
-        function switchLanguage(lang) {
-            // Update active language button
-            document.querySelectorAll('.language-btn').forEach(btn => {
-                btn.classList.remove('active');
+        // Seller data structure with all 12 sellers
+        const sellers = [
+            {
+                id: 1,
+                username: "@kaidoone20",
+                tg_id: "896743456",
+                photo: "https://i.ibb.co/21NJKP0N/photo-2025-06-16-21-14-51.jpg",
+                categories: ["vapes", "e-liquids"],
+                specs: { 
+                    eng: ["Vapes", "E-liquids"], 
+                    ru: ["Вейпы", "Жидкости"], 
+                    lv: ["Elektroniskās cigaretes", "E-šķidrumi"] 
+                },
+                date: "21.06.2025"
+            },
+            {
+                id: 2,
+                username: "@Ukropp7",
+                tg_id: "1228822075",
+                photo: "https://i.ibb.co/gLMGbgQK/photo-2025-06-21-21-36-08.jpg",
+                categories: ["vapes", "e-liquids", "snus"],
+                specs: { 
+                    eng: ["Vapes", "E-liquids", "Snus"], 
+                    ru: ["Вейпы", "Жидкости", "Снюс"], 
+                    lv: ["Elektroniskās cigaretes", "E-šķidrumi", "Snuss"] 
+                },
+                date: "21.06.2025"
+            },
+            {
+                id: 3,
+                username: "@Gmk8888",
+                tg_id: "6637869889",
+                photo: "https://i.ibb.co/pBkMq5qm/c491adce-fcc5-49eb-8154-0d178f0a3863.jpg",
+                categories: ["crypto"],
+                specs: { 
+                    eng: ["Crypto seller/buyer"], 
+                    ru: ["Покупка/продажа криптовалюты"], 
+                    lv: ["Kriptovalūtas pārdošana un iepirkšana"] 
+                },
+                date: "21.06.2025"
+            },
+            {
+                id: 4,
+                username: "@seller4",
+                tg_id: "123456789",
+                photo: null,
+                categories: ["vapes", "e-liquids"],
+                specs: { 
+                    eng: ["Vapes", "E-liquids"], 
+                    ru: ["Вейпы", "Жидкости"], 
+                    lv: ["Elektroniskās cigaretes", "E-šķidrumi"] 
+                },
+                date: "21.06.2025"
+            },
+            {
+                id: 5,
+                username: "@seller5",
+                tg_id: "234567890",
+                photo: null,
+                categories: ["snus"],
+                specs: { 
+                    eng: ["Snus", "Premium brands"], 
+                    ru: ["Снюс", "Премиум бренды"], 
+                    lv: ["Snuss", "Premium zīmoli"] 
+                },
+                date: "21.06.2025"
+            },
+            {
+                id: 6,
+                username: "@seller6",
+                tg_id: "345678901",
+                photo: null,
+                categories: ["vapes"],
+                specs: { 
+                    eng: ["Vapes", "Mods"], 
+                    ru: ["Вейпы", "Моды"], 
+                    lv: ["Elektroniskās cigaretes", "Modi"] 
+                },
+                date: "21.06.2025"
+            },
+            {
+                id: 7,
+                username: "@seller7",
+                tg_id: "456789012",
+                photo: null,
+                categories: ["e-liquids"],
+                specs: { 
+                    eng: ["E-liquids", "DIY supplies"], 
+                    ru: ["Жидкости", "DIY материалы"], 
+                    lv: ["E-šķidrumi", "DIY materiāli"] 
+                },
+                date: "21.06.2025"
+            },
+            {
+                id: 8,
+                username: "@seller8",
+                tg_id: "567890123",
+                photo: null,
+                categories: ["vapes", "e-liquids"],
+                specs: { 
+                    eng: ["Vapes", "E-liquids", "Accessories"], 
+                    ru: ["Вейпы", "Жидкости", "Аксессуары"], 
+                    lv: ["Elektroniskās cigaretes", "E-šķidrumi", "Aksesuāri"] 
+                },
+                date: "21.06.2025"
+            },
+            {
+                id: 9,
+                username: "@seller9",
+                tg_id: "678901234",
+                photo: null,
+                categories: ["crypto"],
+                specs: { 
+                    eng: ["Crypto exchange", "BTC/ETH"], 
+                    ru: ["Обмен криптовалюты", "BTC/ETH"], 
+                    lv: ["Kriptovalūtas apmaiņa", "BTC/ETH"] 
+                },
+                date: "21.06.2025"
+            },
+            {
+                id: 10,
+                username: "@seller10",
+                tg_id: "789012345",
+                photo: null,
+                categories: ["snus"],
+                specs: { 
+                    eng: ["Snus", "Swedish brands"], 
+                    ru: ["Снюс", "Шведские бренды"], 
+                    lv: ["Snuss", "Zviedru zīmoli"] 
+                },
+                date: "21.06.2025"
+            },
+            {
+                id: 11,
+                username: "@seller11",
+                tg_id: "890123456",
+                photo: null,
+                categories: ["vapes"],
+                specs: { 
+                    eng: ["Vapes", "Disposable"], 
+                    ru: ["Вейпы", "Одноразовые"], 
+                    lv: ["Elektroniskās cigaretes", "Vienreizējās"] 
+                },
+                date: "21.06.2025"
+            },
+            {
+                id: 12,
+                username: "@seller12",
+                tg_id: "901234567",
+                photo: null,
+                categories: ["e-liquids"],
+                specs: { 
+                    eng: ["E-liquids", "Flavors"], 
+                    ru: ["Жидкости", "Ароматы"], 
+                    lv: ["E-šķidrumi", "Garšas"] 
+                },
+                date: "21.06.2025"
+            }
+        ];
+
+        // Language texts
+        const translations = {
+            eng: {
+                title: "Verified Sellers",
+                footer: "© 2025 Verified Sellers. All rights reserved.",
+                about: "About Us",
+                verification: "Verification Process",
+                contact: "Contact",
+                logo: "Verified Sellers",
+                specializes: "Specializes in:",
+                reviews: "Reviews:",
+                ask: "Ask directly",
+                verified: "Verified",
+                contactBtn: "Contact"
+            },
+            ru: {
+                title: "Проверенные продавцы",
+                footer: "© 2025 Проверенные продавцы. Все права защищены.",
+                about: "О нас",
+                verification: "Процесс проверки",
+                contact: "Контакты",
+                logo: "Проверенные",
+                specializes: "Специализация:",
+                reviews: "Отзывы:",
+                ask: "Спросите на прямую",
+                verified: "Проверен",
+                contactBtn: "Связаться"
+            },
+            lv: {
+                title: "Verificēti pārdevēji",
+                footer: "© 2025 Verificēti pārdevēji. Visas tiesības aizsargātas.",
+                about: "Par mums",
+                verification: "Verifikācijas process",
+                contact: "Kontakti",
+                logo: "Verificēti",
+                specializes: "Specializācija:",
+                reviews: "Atsauksmes:",
+                ask: "Jautāt pa taisno",
+                verified: "Verificēts",
+                contactBtn: "Sazināties"
+            }
+        };
+
+        // Generate seller cards
+        function generateSellerCards(lang) {
+            const container = document.getElementById('sellersContainer');
+            container.innerHTML = '';
+            
+            sellers.forEach((seller, index) => {
+                const card = document.createElement('div');
+                card.className = 'seller-card';
+                card.dataset.categories = seller.categories.join(' ');
+                card.style.animationDelay = `${0.1 * (index + 1)}s`;
+                
+                card.innerHTML = `
+                    <div class="seller-photo-container">
+                        ${seller.photo ? 
+                            `<img src="${seller.photo}" alt="Seller Photo" class="seller-photo" loading="lazy">` : 
+                            `<div class="seller-photo-placeholder"><i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i></div>`}
+                        <div class="seller-badge">
+                            <i class="fas fa-check-circle"></i> ${translations[lang].verified}
+                        </div>
+                    </div>
+                    <div class="seller-content">
+                        <div class="seller-header">
+                            <a href="tg://openmessage?user_id=${seller.tg_id}" class="seller-username">${seller.username}</a>
+                        </div>
+                        <div class="seller-info">
+                            <strong>${translations[lang].specializes}</strong>
+                        </div>
+                        <div class="seller-specs">
+                            ${seller.specs[lang].map(spec => `<span class="spec-tag">${spec}</span>`).join('')}
+                        </div>
+                        <div class="seller-info">
+                            <strong>${translations[lang].reviews}</strong> 
+                            <span>${translations[lang].ask}</span>
+                        </div>
+                        <div class="seller-footer">
+                            <span class="verification-date">${translations[lang].verified}: ${seller.date}</span>
+                            <a href="tg://openmessage?user_id=${seller.tg_id}" class="contact-btn">
+                                <i class="fas fa-paper-plane"></i> ${translations[lang].contactBtn}
+                            </a>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
             });
+        }
+
+        // Language switching
+        function switchLanguage(lang) {
+            document.querySelectorAll('.language-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
             
-            // Hide all seller cards
-            document.querySelectorAll('.seller-card').forEach(card => {
-                card.style.display = 'none';
-            });
+            document.querySelectorAll('.header-image').forEach(img => img.classList.remove('active'));
+            document.getElementById(lang + '-img').classList.add('active');
             
-            // Show cards for selected language
-            document.querySelectorAll('.lang-' + lang).forEach(card => {
-                card.style.display = 'flex';
-            });
+            // Update text elements
+            const texts = translations[lang];
+            document.getElementById('title').textContent = texts.title;
+            document.getElementById('footer-text').textContent = texts.footer;
+            document.getElementById('about-link').textContent = texts.about;
+            document.getElementById('verification-link').textContent = texts.verification;
+            document.getElementById('contact-link').textContent = texts.contact;
+            document.getElementById('logo-text').textContent = texts.logo;
             
-            // Switch header image
-            document.querySelectorAll('.header-image').forEach(img => {
-                img.classList.remove('active');
-            });
-            document.querySelector('.lang-' + lang + '-img').classList.add('active');
-            
-            // Update titles based on language
-            const titles = {
-                'eng': {
-                    'title': 'Verified Sellers',
-                    'footer': '© 2025 Verified Sellers. All rights reserved.',
-                    'about': 'About Us',
-                    'verification': 'Verification Process',
-                    'contact': 'Contact',
-                    'logo': 'Verified Sellers'
-                },
-                'ru': {
-                    'title': 'Проверенные продавцы',
-                    'footer': '© 2025 Проверенные продавцы. Все права защищены.',
-                    'about': 'О нас',
-                    'verification': 'Процесс проверки',
-                    'contact': 'Контакты',
-                    'logo': 'Проверенные'
-                },
-                'lv': {
-                    'title': 'Verificēti pārdevēji',
-                    'footer': '© 2025 Verificēti pārdevēji. Visas tiesības aizsargātas.',
-                    'about': 'Par mums',
-                    'verification': 'Verifikācijas process',
-                    'contact': 'Kontakti',
-                    'logo': 'Verificēti'
-                }
-            };
-            
-            document.getElementById('title').textContent = titles[lang].title;
-            document.getElementById('footer-text').textContent = titles[lang].footer;
-            document.getElementById('about-link').textContent = titles[lang].about;
-            document.getElementById('verification-link').textContent = titles[lang].verification;
-            document.getElementById('contact-link').textContent = titles[lang].contact;
-            document.getElementById('logo-text').textContent = titles[lang].logo;
+            // Regenerate cards with new language
+            generateSellerCards(lang);
         }
-        
+
         // Search functionality
         document.getElementById('searchInput').addEventListener('input', function() {
             const searchTerm = this.value.toLowerCase();
-            const currentLang = document.querySelector('.language-btn.active').getAttribute('onclick').replace("switchLanguage('", "").replace("')", "");
-            
-            document.querySelectorAll('.lang-' + currentLang).forEach(card => {
+            document.querySelectorAll('.seller-card').forEach(card => {
                 const username = card.querySelector('.seller-username').textContent.toLowerCase();
                 const specs = Array.from(card.querySelectorAll('.spec-tag')).map(tag => tag.textContent.toLowerCase()).join(' ');
-                
-                if (username.includes(searchTerm) || specs.includes(searchTerm)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
+                card.style.display = (username.includes(searchTerm) || specs.includes(searchTerm) ? 'flex' : 'none';
             });
         });
-        
-        // Category filter functionality
+
+        // Category filter
         document.getElementById('categoryFilter').addEventListener('change', function() {
             const category = this.value;
-            const currentLang = document.querySelector('.language-btn.active').getAttribute('onclick').replace("switchLanguage('", "").replace("')", "");
-            
-            document.querySelectorAll('.lang-' + currentLang).forEach(card => {
-                if (category === 'all' || card.getAttribute('data-categories').includes(category)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
+            document.querySelectorAll('.seller-card').forEach(card => {
+                card.style.display = (category === 'all' || card.dataset.categories.includes(category)) ? 'flex' : 'none';
             });
         });
-        
-        // Pagination functionality
+
+        // Pagination
         document.querySelectorAll('.page-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                // In a real implementation, you would load the appropriate page of results here
             });
         });
-        
-        // Initialize with English by default
+
+        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            switchLanguage('eng');
+            generateSellerCards('eng');
         });
     </script>
 </body>
