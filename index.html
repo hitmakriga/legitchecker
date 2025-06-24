@@ -36,41 +36,45 @@
             flex-direction: column;
         }
 
+        /* New Header Design */
         header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 1.5rem 0;
+            padding: 0;
             box-shadow: var(--card-shadow);
             position: relative;
             overflow: hidden;
         }
 
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-            transform: rotate(30deg);
+        .header-container {
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
 
-        .container {
-            width: 90%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px 0;
-            position: relative;
-            flex: 1;
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--accent);
         }
 
         .language-switcher {
             display: flex;
-            justify-content: flex-end;
             gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
         }
 
         .language-btn {
@@ -95,13 +99,47 @@
             font-size: 0.9rem;
         }
 
-        h1 {
-            text-align: center;
-            margin: 1.5rem 0;
-            color: white;
+        .header-image-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .header-image.active {
+            display: block;
+        }
+
+        .header-title {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0,0,0,0.7);
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-size: 2rem;
             font-weight: 700;
-            font-size: 2.5rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 0;
+            position: relative;
+            flex: 1;
         }
 
         .search-filter {
@@ -419,8 +457,9 @@
                 grid-template-columns: 1fr;
             }
             
-            h1 {
-                font-size: 2rem;
+            .header-title {
+                font-size: 1.5rem;
+                padding: 8px 20px;
             }
             
             .seller-info strong {
@@ -429,6 +468,12 @@
 
             .search-filter {
                 flex-direction: column;
+            }
+            
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+                padding: 1rem;
             }
         }
 
@@ -459,19 +504,43 @@
 </head>
 <body>
     <header>
-        <div class="container">
-            <div class="language-switcher">
-                <button class="language-btn active" onclick="switchLanguage('eng')">
-                    <i class="fas fa-globe"></i> English
-                </button>
-                <button class="language-btn" onclick="switchLanguage('ru')">
-                    <i class="fas fa-globe"></i> Русский
-                </button>
-                <button class="language-btn" onclick="switchLanguage('lv')">
-                    <i class="fas fa-globe"></i> Latviešu
-                </button>
+        <div class="header-container">
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-check-circle"></i>
+                    <span id="logo-text">Verified Sellers</span>
+                </div>
+                <div class="language-switcher">
+                    <button class="language-btn active" onclick="switchLanguage('eng')">
+                        <i class="fas fa-globe"></i> English
+                    </button>
+                    <button class="language-btn" onclick="switchLanguage('ru')">
+                        <i class="fas fa-globe"></i> Русский
+                    </button>
+                    <button class="language-btn" onclick="switchLanguage('lv')">
+                        <i class="fas fa-globe"></i> Latviešu
+                    </button>
+                </div>
             </div>
-            <h1 id="title">Verified Sellers</h1>
+            
+            <div class="header-image-container">
+                <!-- English Image -->
+                <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                     alt="Verified sellers" 
+                     class="header-image active lang-eng-img">
+                
+                <!-- Russian Image -->
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                     alt="Проверенные продавцы" 
+                     class="header-image lang-ru-img">
+                
+                <!-- Latvian Image -->
+                <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                     alt="Verificēti pārdevēji" 
+                     class="header-image lang-lv-img">
+                
+                <h1 class="header-title" id="title">Verified Sellers</h1>
+            </div>
         </div>
     </header>
 
@@ -1802,7 +1871,7 @@
     </footer>
 
     <script>
-        // Language switching function
+        // Enhanced Language switching function
         function switchLanguage(lang) {
             // Update active language button
             document.querySelectorAll('.language-btn').forEach(btn => {
@@ -1820,6 +1889,12 @@
                 card.style.display = 'flex';
             });
             
+            // Switch header image
+            document.querySelectorAll('.header-image').forEach(img => {
+                img.classList.remove('active');
+            });
+            document.querySelector('.lang-' + lang + '-img').classList.add('active');
+            
             // Update titles based on language
             const titles = {
                 'eng': {
@@ -1827,21 +1902,24 @@
                     'footer': '© 2025 Verified Sellers. All rights reserved.',
                     'about': 'About Us',
                     'verification': 'Verification Process',
-                    'contact': 'Contact'
+                    'contact': 'Contact',
+                    'logo': 'Verified Sellers'
                 },
                 'ru': {
                     'title': 'Проверенные продавцы',
                     'footer': '© 2025 Проверенные продавцы. Все права защищены.',
                     'about': 'О нас',
                     'verification': 'Процесс проверки',
-                    'contact': 'Контакты'
+                    'contact': 'Контакты',
+                    'logo': 'Проверенные'
                 },
                 'lv': {
                     'title': 'Verificēti pārdevēji',
                     'footer': '© 2025 Verificēti pārdevēji. Visas tiesības aizsargātas.',
                     'about': 'Par mums',
                     'verification': 'Verifikācijas process',
-                    'contact': 'Kontakti'
+                    'contact': 'Kontakti',
+                    'logo': 'Verificēti'
                 }
             };
             
@@ -1850,6 +1928,7 @@
             document.getElementById('about-link').textContent = titles[lang].about;
             document.getElementById('verification-link').textContent = titles[lang].verification;
             document.getElementById('contact-link').textContent = titles[lang].contact;
+            document.getElementById('logo-text').textContent = titles[lang].logo;
         }
         
         // Search functionality
