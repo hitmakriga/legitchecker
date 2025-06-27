@@ -79,6 +79,22 @@
                        display: flex; align-items: center; gap: 5px; text-decoration: none; font-size: 0.9rem; }
         .contact-btn:hover { background-color: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 3px 8px rgba(0,0,0,0.1); }
         
+        /* Custom Review Styling */
+        .custom-review {
+            display: inline-block;
+            margin-left: 5px;
+        }
+        .custom-review a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .custom-review a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+        
         footer { background-color: var(--dark); color: white; text-align: center; padding: 2rem 0; margin-top: 4rem; }
         .footer-content { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
         .footer-links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
@@ -182,7 +198,7 @@
     </footer>
 
     <script>
-        // Seller data with all 12 sellers
+        // Seller data with custom review sections
         const sellers = [
             {
                 id: 1,
@@ -195,7 +211,12 @@
                     ru: ["Вейпы", "Жидкости"], 
                     lv: ["Elektroniskās cigaretes", "E-šķidrumi"] 
                 },
-                date: "21.06.2025"
+                date: "21.06.2025",
+                customReview: {
+                    eng: "<a href='https://t.me/kaidoone20_reviews' target='_blank'>50+ positive reviews</a> - trusted seller!",
+                    ru: "<a href='https://t.me/kaidoone20_reviews' target='_blank'>50+ положительных отзывов</a> - проверенный продавец!",
+                    lv: "<a href='https://t.me/kaidoone20_reviews' target='_blank'>50+ pozitīvas atsauksmes</a> - uzticams pārdevējs!"
+                }
             },
             {
                 id: 2,
@@ -208,7 +229,12 @@
                     ru: ["Вейпы", "Жидкости", "Снюс"], 
                     lv: ["Elektroniskās cigaretes", "E-šķidrumi", "Snuss"] 
                 },
-                date: "21.06.2025"
+                date: "21.06.2025",
+                customReview: {
+                    eng: "Fast responses, reliable service (DM for feedback)",
+                    ru: "Быстрые ответы, надежный сервис (пишите за отзывами)",
+                    lv: "Ātras atbildes, uzticams serviss (rakstiet par atsauksmēm)"
+                }
             },
             {
                 id: 3,
@@ -221,7 +247,12 @@
                     ru: ["Покупка/продажа криптовалюты"], 
                     lv: ["Kriptovalūtas pārdošana un iepirkšana"] 
                 },
-                date: "21.06.2025"
+                date: "21.06.2025",
+                customReview: {
+                    eng: "<a href='https://t.me/Gmk8888_reviews' target='_blank'>Verified crypto trader</a> - 100+ successful deals",
+                    ru: "<a href='https://t.me/Gmk8888_reviews' target='_blank'>Проверенный криптотрейдер</a> - 100+ успешных сделок",
+                    lv: "<a href='https://t.me/Gmk8888_reviews' target='_blank'>Verificēts kripto tirgotājs</a> - 100+ veiksmīgi darījumi"
+                }
             },
             {
                 id: 4,
@@ -234,7 +265,12 @@
                     ru: ["Владелец барахолки Рига"], 
                     lv: ["Baraholka Rīga īpašnieks"] 
                 },
-                date: "21.06.2025"
+                date: "21.06.2025",
+                customReview: {
+                    eng: "Platform owner - contact for verification",
+                    ru: "Владелец платформы - контакт для верификации",
+                    lv: "Platformas īpašnieks - kontaktējieties verificēšanai"
+                }
             },
             {
                 id: 5,
@@ -247,98 +283,12 @@
                     ru: ["Снюс", "Вейпы", "Жижи для вейпов"], 
                     lv: ["Snuss", "Veipi", "Veipu šķidrumi"] 
                 },
-                date: "21.06.2025"
-            },
-            {
-                id: 6,
-                username: "@seller6",
-                tg_id: "345678901",
-                photo: null,
-                categories: ["Electronics"],
-                specs: { 
-                    eng: ["Vapes", "Mods"], 
-                    ru: ["Вейпы", "Моды"], 
-                    lv: ["Elektroniskās cigaretes", "Modi"] 
-                },
-                date: "21.06.2025"
-            },
-            {
-                id: 7,
-                username: "@seller7",
-                tg_id: "456789012",
-                photo: null,
-                categories: ["e-liquids"],
-                specs: { 
-                    eng: ["E-liquids", "DIY supplies"], 
-                    ru: ["Жидкости", "DIY материалы"], 
-                    lv: ["E-šķidrumi", "DIY materiāli"] 
-                },
-                date: "21.06.2025"
-            },
-            {
-                id: 8,
-                username: "@seller8",
-                tg_id: "567890123",
-                photo: null,
-                categories: ["vapes", "e-liquids"],
-                specs: { 
-                    eng: ["Vapes", "E-liquids", "Accessories"], 
-                    ru: ["Вейпы", "Жидкости", "Аксессуары"], 
-                    lv: ["Elektroniskās cigaretes", "E-šķidrumi", "Aksesuāri"] 
-                },
-                date: "21.06.2025"
-            },
-            {
-                id: 9,
-                username: "@seller9",
-                tg_id: "678901234",
-                photo: null,
-                categories: ["crypto"],
-                specs: { 
-                    eng: ["Crypto exchange", "BTC/ETH"], 
-                    ru: ["Обмен криптовалюты", "BTC/ETH"], 
-                    lv: ["Kriptovalūtas apmaiņa", "BTC/ETH"] 
-                },
-                date: "21.06.2025"
-            },
-            {
-                id: 10,
-                username: "@seller10",
-                tg_id: "789012345",
-                photo: null,
-                categories: ["snus"],
-                specs: { 
-                    eng: ["Snus", "Swedish brands"], 
-                    ru: ["Снюс", "Шведские бренды"], 
-                    lv: ["Snuss", "Zviedru zīmoli"] 
-                },
-                date: "21.06.2025"
-            },
-            {
-                id: 11,
-                username: "@seller11",
-                tg_id: "890123456",
-                photo: null,
-                categories: ["vapes"],
-                specs: { 
-                    eng: ["Vapes", "Disposable"], 
-                    ru: ["Вейпы", "Одноразовые"], 
-                    lv: ["Elektroniskās cigaretes", "Vienreizējās"] 
-                },
-                date: "21.06.2025"
-            },
-            {
-                id: 12,
-                username: "@seller12",
-                tg_id: "901234567",
-                photo: null,
-                categories: ["e-liquids"],
-                specs: { 
-                    eng: ["E-liquids", "Flavors"], 
-                    ru: ["Жидкости", "Ароматы"], 
-                    lv: ["E-šķidrumi", "Garšas"] 
-                },
-                date: "21.06.2025"
+                date: "21.06.2025",
+                customReview: {
+                    eng: "Specializing in Swedish snus - <a href='https://t.me/pouchypuffman_reviews' target='_blank'>see reviews</a>",
+                    ru: "Специализация на шведском снюсе - <a href='https://t.me/pouchypuffman_reviews' target='_blank'>отзывы</a>",
+                    lv: "Specializējas zviedru snusā - <a href='https://t.me/pouchypuffman_reviews' target='_blank'>atsauksmes</a>"
+                }
             }
         ];
 
@@ -353,7 +303,6 @@
                 logo: "Verified Sellers by baraholka Riga",
                 specializes: "Specializes in:",
                 reviews: "Reviews:",
-                ask: "Ask directly",
                 verified: "Verified",
                 contactBtn: "Contact"
             },
@@ -366,7 +315,6 @@
                 logo: "Проверенные продавцы барахолкой Риги",
                 specializes: "Специализация:",
                 reviews: "Отзывы:",
-                ask: "Спросите на прямую",
                 verified: "Проверен",
                 contactBtn: "Связаться"
             },
@@ -379,7 +327,6 @@
                 logo: "Rīgas baraholkas vereficēti pārdevēji.",
                 specializes: "Specializācija:",
                 reviews: "Atsauksmes:",
-                ask: "Jautāt pa taisno",
                 verified: "Verificēts",
                 contactBtn: "Sazināties"
             }
@@ -397,7 +344,7 @@
                 card.style.animationDelay = `${0.1 * (index + 1)}s`;
                 
                 card.innerHTML = `
-                    <a href="/legitchecker/user${seller.id}"" class="seller-card-link" style="text-decoration: none; color: inherit;">
+                    <a href="/legitchecker/user${seller.id}" class="seller-card-link" style="text-decoration: none; color: inherit;">
                         <div class="seller-photo-container">
                             ${seller.photo ? 
                                 `<img src="${seller.photo}" alt="Seller Photo" class="seller-photo" loading="lazy">` : 
@@ -411,14 +358,14 @@
                                 <span class="seller-username">${seller.username}</span>
                             </div>
                             <div class="seller-info">
-                                <strong>${translations[lang].specializes}</strong>
+                                <strong>${translations[lang].specializes}:</strong>
                             </div>
                             <div class="seller-specs">
                                 ${seller.specs[lang].map(spec => `<span class="spec-tag">${spec}</span>`).join('')}
                             </div>
                             <div class="seller-info">
                                 <strong>${translations[lang].reviews}</strong> 
-                                <span>${translations[lang].ask}</span>
+                                <span class="custom-review">${seller.customReview[lang]}</span>
                             </div>
                             <div class="seller-footer">
                                 <span class="verification-date">${translations[lang].verified}: ${seller.date}</span>
