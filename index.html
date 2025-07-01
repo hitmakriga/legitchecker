@@ -105,11 +105,6 @@
         .footer-link:hover::after { width: 100%; }
         .copyright { font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); }
         
-        .pagination { display: flex; justify-content: center; margin-top: 3rem; gap: 10px; }
-        .page-btn { padding: 8px 15px; border-radius: 6px; background-color: white; border: 1px solid #ddd; 
-                    cursor: pointer; transition: var(--transition); }
-        .page-btn:hover, .page-btn.active { background-color: var(--primary); color: white; border-color: var(--primary); }
-        
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
         @media (max-width: 768px) {
@@ -175,12 +170,6 @@
 
         <div class="sellers-list" id="sellersContainer">
             <!-- Seller cards will be generated here -->
-        </div>
-
-        <div class="pagination">
-            <button class="page-btn active">1</button>
-            <button class="page-btn">2</button>
-            <button class="page-btn">3</button>
         </div>
     </div>
 
@@ -416,14 +405,6 @@
             const category = this.value;
             document.querySelectorAll('.seller-card').forEach(card => {
                 card.style.display = (category === 'all' || card.dataset.categories.includes(category)) ? 'flex' : 'none';
-            });
-        });
-
-        // Pagination
-        document.querySelectorAll('.page-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
             });
         });
 
