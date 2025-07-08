@@ -4,7 +4,428 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verified Sellers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awe<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verified Sellers</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee; --primary-dark: #3a56d4; --secondary: #3f37c9; 
+            --accent: #4895ef; --dark: #212529; --light: #f8f9fa; --gray: #6c757d;
+            --success: #4cc9f0; --warning: #f72585;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.6; color: var(--dark); 
+               background-color: #d0d5d1; min-height: 100vh; display: flex; flex-direction: column; }
+        
+        header { background: linear-gradient(135deg, var(--primary), var(--secondary)); 
+                 color: white; padding: 0; box-shadow: var(--card-shadow); position: relative; }
+        .header-container { display: flex; flex-direction: column; position: relative; }
+        .header-top { display: flex; justify-content: space-between; align-items: center; 
+                      padding: 1rem 2rem; background-color: rgba(0,0,0,0.2); }
+        .logo { font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .logo i { color: var(--accent); }
+        .language-switcher { display: flex; gap: 10px; }
+        .language-btn { background-color: rgba(255, 255, 255, 0.2); color: white; border: none; 
+                        padding: 8px 15px; border-radius: 20px; cursor: pointer; transition: var(--transition); 
+                        display: flex; align-items: center; gap: 5px; font-weight: 500; }
+        .language-btn:hover, .language-btn.active { background-color: rgba(255, 255, 255, 0.3); }
+        .header-image-container { width: 100%; height: 200px; overflow: hidden; position: relative; 
+                                 display: flex; align-items: center; justify-content: center; }
+        .header-image { width: 100%; height: 100%; object-fit: cover; display: none; }
+        .header-image.active { display: block; }
+        .header-title { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); 
+                        background-color: rgba(0,0,0,0.7); padding: 10px 30px; border-radius: 30px; 
+                        font-size: 2rem; font-weight: 700; text-align: center; }
+        
+        .container { width: 90%; max-width: 1400px; margin: 0 auto; padding: 20px 0; position: relative; flex: 1; }
+        .search-filter { display: flex; gap: 15px; margin-bottom: 2rem; flex-wrap: wrap; }
+        .search-box { flex: 1; min-width: 250px; position: relative; }
+        .search-box input { width: 100%; padding: 12px 15px 12px 40px; border-radius: 30px; 
+                            border: 1px solid #ddd; font-size: 1rem; transition: var(--transition); }
+        .search-box input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.2); }
+        .search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--gray); }
+        .filter-select { min-width: 200px; }
+        .filter-select select { width: 100%; padding: 12px 15px; border-radius: 30px; border: 1px solid #ddd; 
+                               font-size: 1rem; appearance: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); 
+                               background-repeat: no-repeat; background-position: right 15px center; background-size: 1em; }
+        
+        .sellers-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; margin-top: 2rem; }
+        .seller-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: var(--card-shadow); 
+                       transition: var(--transition); display: flex; flex-direction: column; position: relative; 
+                       animation: fadeIn 0.5s ease forwards; opacity: 0; }
+        .seller-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); }
+        .seller-photo-container { width: 100%; aspect-ratio: 1/1; background: linear-gradient(45deg, #e0e0e0, #f5f5f5); 
+                                  position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .seller-photo { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+        .seller-card:hover .seller-photo { transform: scale(1.05); }
+        .seller-badge { position: absolute; top: 15px; left: 15px; background-color: var(--success); color: white; 
+                        padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; 
+                        display: flex; align-items: center; gap: 5px; z-index: 2; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .seller-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .seller-header { display: flex; align-items: center; margin-bottom: 1rem; }
+        .seller-username { font-size: 1.2rem; font-weight: 600; color: var(--primary); text-decoration: none; transition: var(--transition); }
+        .seller-username:hover { color: var(--primary-dark); text-decoration: underline; }
+        .seller-info { margin-bottom: 0.8rem; display: flex; flex-wrap: wrap; }
+        .seller-info strong { color: var(--dark); min-width: 120px; display: inline-block; font-weight: 600; }
+        .seller-specs { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+        .spec-tag { background-color: #e9ecef; color: var(--dark); padding: 5px 12px; border-radius: 20px; 
+                    font-size: 0.8rem; font-weight: 500; transition: var(--transition); }
+        .spec-tag:hover { background-color: var(--accent); color: white; }
+        .seller-footer { margin-top: auto; padding-top: 15px; border-top: 1px solid #e9ecef; 
+                         display: flex; justify-content: space-between; align-items: center; }
+        .verification-date { font-size: 0.85rem; color: var(--gray); }
+        .contact-btn { background-color: var(--primary); color: white; border: none; padding: 8px 15px; 
+                       border-radius: 6px; cursor: pointer; transition: var(--transition); font-weight: 500; 
+                       display: flex; align-items: center; gap: 5px; text-decoration: none; font-size: 0.9rem; }
+        .contact-btn:hover { background-color: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 3px 8px rgba(0,0,0,0.1); }
+        
+        /* Custom Review Styling */
+        .custom-review {
+            display: inline-block;
+            margin-left: 5px;
+        }
+        .custom-review a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .custom-review a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+        
+        footer { background-color: var(--dark); color: white; text-align: center; padding: 2rem 0; margin-top: 4rem; }
+        .footer-content { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+        .footer-links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .footer-link { color: white; text-decoration: none; transition: var(--transition); padding: 5px 0; position: relative; }
+        .footer-link:hover { color: var(--accent); }
+        .footer-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; 
+                             height: 2px; background-color: var(--accent); transition: var(--transition); }
+        .footer-link:hover::after { width: 100%; }
+        .copyright { font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        @media (max-width: 768px) {
+            .sellers-list { grid-template-columns: 1fr; }
+            .header-title { font-size: 1.5rem; padding: 8px 20px; }
+            .seller-info strong { min-width: 100px; }
+            .search-filter { flex-direction: column; }
+            .header-top { flex-direction: column; gap: 15px; padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-check-circle"></i>
+                    <span id="logo-text">Verified people by baraholka Riga</span>
+                </div>
+                <div class="language-switcher">
+                    <button class="language-btn active" onclick="switchLanguage('eng')">
+                        <i class="fas fa-globe"></i> English
+                    </button>
+                    <button class="language-btn" onclick="switchLanguage('ru')">
+                        <i class="fas fa-globe"></i> Русский
+                    </button>
+                    <button class="language-btn" onclick="switchLanguage('lv')">
+                        <i class="fas fa-globe"></i> Latviešu
+                    </button>
+                </div>
+            </div>
+            
+            <div class="header-image-container">
+                <img src="https://i.ibb.co/MrKy5Q0/Untitled-design-9.png" 
+                     alt="Verified sellers" class="header-image active" id="eng-img">
+                <img src="https://i.ibb.co/MrKy5Q0/Untitled-design-9.png" 
+                     alt="Проверенные продавцы" class="header-image" id="ru-img">
+                <img src="https://i.ibb.co/MrKy5Q0/Untitled-design-9.png" 
+                     alt="Verificēti pārdevēji" class="header-image" id="lv-img">
+                <h1 class="header-title" id="title">Verified people</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="search-filter">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search sellers..." id="searchInput">
+            </div>
+            <div class="filter-select">
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="seller">Seller</option>
+                    <option value="buyer">Buyer</option>
+                    <option value="service">Service provider</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="sellers-list" id="sellersContainer">
+            <!-- Seller cards will be generated here -->
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#" class="footer-link" id="about-link">About Us</a>
+                    <a href="#" class="footer-link" id="verification-link">Verification Process</a>
+                    <a href="#" class="footer-link" id="contact-link">Contact</a>
+                </div>
+                <p class="copyright" id="footer-text">© 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Seller data with custom review sections and displayId
+        const sellers = [
+            {
+                id: 1,
+                displayId: 3,  // Display order (lower numbers appear first)
+                username: "@kaidoone20",
+                tg_id: "896743456",
+                photo: "https://i.ibb.co/21NJKP0N/photo-2025-06-16-21-14-51.jpg",
+                categories: ["seller"],
+                specs: { 
+                    eng: ["Seller"], 
+                    ru: ["Продавец"], 
+                    lv: ["Pārdevējs"] 
+                },
+                date: "21.06.2025",
+                customReview: {
+                    eng: "ask directly",
+                    ru: "спрашивайте на прямую",
+                    lv: "Jautājiet pārdevejam."
+                }
+            },
+            {
+                id: 2,
+                displayId: 2,
+                username: "@Ukropp7",
+                tg_id: "1228822075",
+                photo: "https://i.ibb.co/gLMGbgQK/photo-2025-06-21-21-36-08.jpg",
+                categories: ["seller"],
+                specs: { 
+                    eng: ["Seller"], 
+                    ru: ["Продавец"], 
+                    lv: ["Pārdevējs"] 
+                },
+                date: "21.06.2025",
+                customReview: {
+                    eng: "ask directly",
+                    ru: "спрашивайте на прямую",
+                    lv: "Jautājiet pārdevejam."
+                }
+            },
+            {
+                id: 3,
+                displayId: 4,
+                username: "@Gmk8888",
+                tg_id: "6637869889",
+                photo: "https://i.ibb.co/pBkMq5qm/c491adce-fcc5-49eb-8154-0d178f0a3863.jpg",
+                categories: ["seller", "buyer"],
+                specs: { 
+                    eng: ["Crypto seller/buyer"], 
+                    ru: ["Покупка/продажа криптовалюты"], 
+                    lv: ["Kriptovalūtas pārdošana un iepirkšana"] 
+                },
+                date: "21.06.2025",
+               customReview: {
+                    eng: "ask directly",
+                    ru: "спрашивайте на прямую",
+                    lv: "Jautājiet pārdevejam."
+                }
+            },
+            {
+                id: 4,
+                displayId: 1,  // Will appear first
+                username: "@ED_Gars",
+                tg_id: "1788349871",
+                photo: "https://i.ibb.co/hRmtf2w8/15432de1-eb93-40d9-9e02-0df7489645a6.jpg",
+                categories: ["Owner of Baraholka Riga"],
+                specs: { 
+                    eng: ["Owner of Baraholka Riga", "Owner of Anti Scam"], 
+                    ru: ["Владелец барахолки Рига", "Владелец Анти Скам"], 
+                    lv: ["Baraholka Rīga īpašnieks", "Anti Scam projekta īpašnieks"] 
+                },
+                date: "21.06.2025",
+                customReview: {
+                    eng: "Platform owner - contact for verification",
+                    ru: "Владелец платформы - контакт для верификации",
+                    lv: "Platformas īpašnieks - kontaktējieties verificēšanai"
+                }
+            },
+            {
+                id: 5,
+                displayId: 5,
+                username: "@pouchypuffman",
+                tg_id: "7228228695",
+                photo: "https://i.ibb.co/DfyWZCp2/5976419608128768579.jpg",
+                categories: ["snus", "vapes", "e-liquids"],
+                specs: { 
+                    eng: ["Snus", "Vapes", "E-liquids"], 
+                    ru: ["Снюс", "Вейпы", "Жижи для вейпов"], 
+                    lv: ["Snuss", "Veipi", "Veipu šķidrumi"] 
+                },
+                date: "26.06.2025",
+                customReview: {
+                    eng: "<a href='https://t.me/+OfjXXLVs5Zg2YWJk' target='_blank'>see reviews</a>",
+                    ru: "<a href='https://t.me/+OfjXXLVs5Zg2YWJk' target='_blank'>отзывы</a>",
+                    lv: "<a href='https://t.me/+OfjXXLVs5Zg2YWJk' target='_blank'>atsauksmes</a>"
+                }
+            }
+        ];
+
+        // Language translations
+        const translations = {
+            eng: {
+                title: "Verified People",
+                footer: "© 2025",
+                about: "About Us",
+                verification: "Verification Process",
+                contact: "Contact",
+                logo: "Verified People by baraholka Riga",
+                specializes: "Specializes in:",
+                reviews: "Reviews:",
+                verified: "Verified",
+                contactBtn: "Contact"
+            },
+            ru: {
+                title: "Проверенные Люди",
+                footer: "© 2025",
+                about: "О нас",
+                verification: "Процесс проверки",
+                contact: "Контакты",
+                logo: "Проверенные Люди барахолкой Риги",
+                specializes: "Специализация:",
+                reviews: "Отзывы:",
+                verified: "Проверен",
+                contactBtn: "Связаться"
+            },
+            lv: {
+                title: "Verificēti cilvēki",
+                footer: "© 2025",
+                about: "Par mums",
+                verification: "Verifikācijas process",
+                contact: "Kontakti",
+                logo: "Rīgas baraholkas vereficēti cilvēki.",
+                specializes: "Specializācija:",
+                reviews: "Atsauksmes:",
+                verified: "Verificēts",
+                contactBtn: "Sazināties"
+            }
+        };
+
+        // Generate seller cards - UPDATED to sort by displayId
+        function generateSellerCards(lang) {
+            const container = document.getElementById('sellersContainer');
+            container.innerHTML = '';
+            
+            // Sort sellers by displayId before generating cards
+            const sortedSellers = [...sellers].sort((a, b) => a.displayId - b.displayId);
+            
+            sortedSellers.forEach((seller, index) => {
+                const card = document.createElement('div');
+                card.className = 'seller-card';
+                card.dataset.categories = seller.categories.join(' ');
+                card.style.animationDelay = `${0.1 * (index + 1)}s`;
+                
+                card.innerHTML = `
+                    <a href="/legitchecker/user${seller.id}" class="seller-card-link" style="text-decoration: none; color: inherit;">
+                        <div class="seller-photo-container">
+                            ${seller.photo ? 
+                                `<img src="${seller.photo}" alt="Seller Photo" class="seller-photo" loading="lazy">` : 
+                                `<div class="seller-photo-placeholder"><i class="fas fa-user-circle fa-5x" style="color: #ccc;"></i></div>`}
+                            <div class="seller-badge">
+                                <i class="fas fa-check-circle"></i> ${translations[lang].verified}
+                            </div>
+                        </div>
+                        <div class="seller-content">
+                            <div class="seller-header">
+                                <span class="seller-username">${seller.username}</span>
+                            </div>
+                            <div class="seller-info">
+                                <strong>${translations[lang].specializes}:</strong>
+                            </div>
+                            <div class="seller-specs">
+                                ${seller.specs[lang].map(spec => `<span class="spec-tag">${spec}</span>`).join('')}
+                            </div>
+                            <div class="seller-info">
+                                <strong>${translations[lang].reviews}</strong> 
+                                <span class="custom-review">${seller.customReview[lang]}</span>
+                            </div>
+                            <div class="seller-footer">
+                                <span class="verification-date">${translations[lang].verified}: ${seller.date}</span>
+                                <a href="tg://openmessage?user_id=${seller.tg_id}" class="contact-btn">
+                                    <i class="fas fa-paper-plane"></i> ${translations[lang].contactBtn}
+                                </a>
+                            </div>
+                        </div>
+                    </a>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Language switching
+        function switchLanguage(lang) {
+            document.querySelectorAll('.language-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.querySelectorAll('.header-image').forEach(img => img.classList.remove('active'));
+            document.getElementById(lang + '-img').classList.add('active');
+            
+            // Update text elements
+            const texts = translations[lang];
+            document.getElementById('title').textContent = texts.title;
+            document.getElementById('footer-text').textContent = texts.footer;
+            document.getElementById('about-link').textContent = texts.about;
+            document.getElementById('verification-link').textContent = texts.verification;
+            document.getElementById('contact-link').textContent = texts.contact;
+            document.getElementById('logo-text').textContent = texts.logo;
+            
+            // Regenerate cards with new language
+            generateSellerCards(lang);
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            document.querySelectorAll('.seller-card').forEach(card => {
+                const username = card.querySelector('.seller-username').textContent.toLowerCase();
+                const specs = Array.from(card.querySelectorAll('.spec-tag')).map(tag => tag.textContent.toLowerCase()).join(' ');
+                card.style.display = (username.includes(searchTerm) || specs.includes(searchTerm)) ? 'flex' : 'none';
+            });
+        });
+
+        // Category filter
+        document.getElementById('categoryFilter').addEventListener('change', function() {
+            const category = this.value;
+            document.querySelectorAll('.seller-card').forEach(card => {
+                card.style.display = (category === 'all' || card.dataset.categories.includes(category)) ? 'flex' : 'none';
+            });
+        });
+
+        // Initialize with English by default
+        document.addEventListener('DOMContentLoaded', function() {
+            generateSellerCards('eng');
+        });
+    </script>
+</body>
+</html>some/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #4361ee; --primary-dark: #3a56d4; --secondary: #3f37c9; 
